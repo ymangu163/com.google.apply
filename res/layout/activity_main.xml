@@ -3,13 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
-    
+    <!-- 内容页 -->
     <RelativeLayout
+         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#CC3333" />
+        android:background="#CC3333" >
+        
+      <!--    <com.google.apply.widget.PagerTab
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="42dip"
+                android:background="@drawable/bg_tab"/> -->
 
-    <!-- 内容页， 覆盖掉了菜单页 -->
+        <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tabs"
+                tools:context=".MainActivity"/>
+        
+    </RelativeLayout>
+
+    <!-- 菜单页， 覆盖掉了菜单页 -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
