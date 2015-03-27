@@ -10,11 +10,11 @@
         android:layout_height="match_parent"
         android:background="#CC3333" >
         
-      <!--    <com.google.apply.widget.PagerTab
+         <com.google.apply.ui.widget.PagerTab
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="42dip"
-                android:background="@drawable/bg_tab"/> -->
+                android:background="@drawable/bg_tab"/>
 
         <android.support.v4.view.ViewPager
                 android:id="@+id/pager"
