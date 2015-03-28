@@ -1,0 +1,29 @@
+package com.google.apply.holder;
+
+import android.view.View;
+
+public abstract class BaseHolder<T> {
+	private View view;
+	private T data;
+	
+	public BaseHolder() {
+		view = initView();
+		view.setTag(this);
+	}
+	
+	public void setData(T data){
+		this.data = data;
+		refreshView();
+	}
+	
+	public T getData(){
+		return data;
+	}
+	
+	public View getRootView(){
+		return view;
+	}
+	
+	public abstract void refreshView();
+	public abstract View initView();
+}

@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.apply.adapter.MyBaseAdapter;
+import com.google.apply.holder.BaseHolder;
 import com.google.apply.ui.widget.LoadingPager.LoadResult;
 import com.google.apply.utils.UIUtils;
 
@@ -27,46 +29,40 @@ public class HomeFragment extends BaseFragment {
 	@Override
 	protected View createLoadedView() {
 		ListView mListView = new ListView(UIUtils.getContext());
-		HomeAdapter adapter = new HomeAdapter();
+		HomeAdapter adapter = new HomeAdapter(mDatas);
 		mListView.setAdapter(adapter);
 		
 		return mListView;
 	}
 
-	private class HomeAdapter extends BaseAdapter{
-		private ViewHolder holder;
-		@Override
-		public int getCount() {
-			return mDatas.size();
+	private class HomeAdapter extends MyBaseAdapter{
+
+		public HomeAdapter(List<String> mDatas) {
+			super(mDatas);
 		}
 
 		@Override
-		public Object getItem(int position) {
-			return mDatas.get(position);
+		public BaseHolder getHolder() {
+			return new ViewHolder();
 		}
+		
 
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			if(convertView == null){
-				convertView =  new TextView(UIUtils.getContext());
-				holder = new ViewHolder();
-				holder.tv = (TextView) convertView;
-				convertView.setTag(holder);
-			}else{
-				holder = (ViewHolder) convertView.getTag();
-			}
-			holder.tv.setText(mDatas.get(position));			
-			return convertView;
-		}
+		
 	
 	}
 	
-	private class ViewHolder{
+	private class ViewHolder extends BaseHolder<String>{
 		TextView tv;
+
+		@Override
+		public void refreshView() {
+			tv.setText(getData());
+		}
+
+		@Override
+		public View initView() {
+			tv = new TextView(UIUtils.getContext());
+			return tv;
+		}
 	}
 }
