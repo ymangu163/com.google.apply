@@ -85,7 +85,8 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
 
 	@Override
 	public void onPageSelected(int position) {
-		BaseFragment fragment = FragmentFactory.createFragment(position);
+		BaseFragment  fragment = FragmentFactory.createFragment(position);
+		fragment.show();   //使下载的线程运行起来
 	}
 	
 	

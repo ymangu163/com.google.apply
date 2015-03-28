@@ -132,8 +132,8 @@ public abstract class LoadingPager extends FrameLayout {
 	
 	
 	// 梅举
-	private  enum LoadResult{
-		ERROR(3),EMPTY(4),SUCCESS(5);
+	public  enum LoadResult{
+		ERROR(3),EMPTY(4),SUCCEED(5);
         int value ;
 		LoadResult(int value){
 			this.value = value;
