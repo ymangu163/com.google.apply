@@ -45,6 +45,14 @@ public class HomeFragment extends BaseFragment {
 		public BaseHolder getHolder() {
 			return new ViewHolder();
 		}
+
+		@Override
+		protected List onLoadMore() {
+
+			
+			
+			return null;
+		}
 		
 
 		

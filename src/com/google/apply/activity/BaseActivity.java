@@ -6,12 +6,10 @@ import android.support.v7.app.ActionBarActivity;
 
 
 public abstract class BaseActivity extends ActionBarActivity {
-	 private Context context= null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.context = this;
 		initView();
 		initActionbar();
 	}
