@@ -37,7 +37,7 @@ public abstract class BaseFragment extends Fragment {
 		
 		return mContentView;
 	}
-	//	加载数据
+	//	加载数据,更新状态
 	protected abstract LoadResult load();
 	
 	//加载View
@@ -64,7 +64,6 @@ public abstract class BaseFragment extends Fragment {
 				}
 
 			}
-
 			return LoadResult.SUCCEED;
 		}
 }

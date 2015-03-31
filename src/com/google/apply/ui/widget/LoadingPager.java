@@ -146,7 +146,7 @@ public abstract class LoadingPager extends FrameLayout {
 	}  
 	
 	protected abstract View createSuccessView();
-	public abstract LoadResult load();
+	public abstract LoadResult load();    
 	
 	private View createLoadingView() {		
 		return UIUtils.inflate(R.layout.loading_page_loading);
