@@ -8,7 +8,7 @@
          android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#CC3333" >
+        android:background="#ffffffff" >
         
          <com.google.apply.ui.widget.PagerTab
                 android:id="@+id/tabs"
