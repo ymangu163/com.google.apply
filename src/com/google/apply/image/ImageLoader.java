@@ -113,6 +113,7 @@ public class ImageLoader {
 		Bitmap bitmap = null;
 		Drawable drawable = null;
 		String path = FileUtils.getIconDir();
+		LogUtils.d("the path is:"+path);
 		FileInputStream fis = null;
 		try {
 			//获取流

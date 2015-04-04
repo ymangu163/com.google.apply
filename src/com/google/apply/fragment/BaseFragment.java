@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.apply.ui.widget.LoadingPager;
 import com.google.apply.ui.widget.LoadingPager.LoadResult;
 import com.google.apply.utils.UIUtils;
+import com.google.apply.utils.ViewUtils;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -33,6 +34,8 @@ public abstract class BaseFragment extends Fragment {
 					return BaseFragment.this.load();
 				}				
 			};
+		}else{
+			ViewUtils.removeSelfFromParent(mContentView);
 		}
 		
 		return mContentView;
