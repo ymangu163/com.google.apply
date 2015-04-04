@@ -54,6 +54,10 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter{
 		}
 		
 	}
+	
+	public int getItemViewTypeInner(int position) {
+		return ITEM_VIEW_TYPE;
+	}
 
 	@Override
 	public int getViewTypeCount() {
