@@ -21,7 +21,9 @@
         >
         <activity
             android:name="com.google.apply.activity.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="landscape"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,6 +31,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.BaseActivity"></activity>
+        <activity android:name=".activity.DetailActivity"
+            android:screenOrientation="landscape"/>
         
         
     </application>

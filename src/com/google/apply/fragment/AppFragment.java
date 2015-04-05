@@ -2,9 +2,13 @@ package com.google.apply.fragment;
 
 import java.util.List;
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.google.apply.activity.DetailActivity;
 import com.google.apply.adapter.MyBaseAdapter;
 import com.google.apply.bean.AppInfo;
 import com.google.apply.holder.AppHolder;
@@ -26,16 +30,17 @@ public class AppFragment extends BaseFragment {
 	@Override
 	protected View createLoadedView() {
 		ListView mListView = new ListView(UIUtils.getContext());
-		AppAdapter adapter = new AppAdapter(mDatas);
+		AppAdapter adapter = new AppAdapter(mDatas,mListView);
 		mListView.setAdapter(adapter);		
 		return mListView;
 	}
 
 	
-	private class AppAdapter extends MyBaseAdapter<AppInfo>{
+	private class AppAdapter extends MyBaseAdapter<AppInfo> implements OnItemClickListener{
 
-		public AppAdapter(List<AppInfo> mDatas) {
+		public AppAdapter(List<AppInfo> mDatas, ListView mListView) {
 			super(mDatas);
+			mListView.setOnItemClickListener(this);
 		}
 
 		@Override
@@ -47,6 +52,15 @@ public class AppFragment extends BaseFragment {
 		protected List onLoadMore() {
 			AppProtocol protocol = new AppProtocol();			
 			return protocol.load(getData().size());
+		}
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			Intent intent = new Intent(UIUtils.getContext(),DetailActivity.class);
+			String packageName = getData().get(position).getPackageName();
+			intent.putExtra("packageName", packageName);
+			startActivity(intent);			
 		}	
 	}
 }
