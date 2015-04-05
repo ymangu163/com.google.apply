@@ -21,12 +21,8 @@ public class RecommentFragment extends BaseFragment {
 	@Override
 	protected LoadResult load() {
 		RecommendProtocol protocol = new RecommendProtocol();
-//		mDatas = protocol.load(0);
-		mDatas=new ArrayList<String>();
-		for(int i=0;i<50;i++){
-			mDatas.add("天机"+i);
-			
-		}
+		mDatas = protocol.load(0);
+
 		return check(mDatas);
 	}
 

@@ -14,5 +14,7 @@
     <color name="progress">#0294f0</color>
     <color name="menu_bg_normal">#f0f1f3</color>
     <color name="menu_bg_press">#cecece</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
 
 </resources>

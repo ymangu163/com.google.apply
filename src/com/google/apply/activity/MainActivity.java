@@ -9,21 +9,33 @@ import com.google.apply.utils.UIUtils;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends BaseActivity implements OnPageChangeListener {
 
+	private DrawerLayout drawer_layout;
+	private ActionBarDrawerToggle drawerToggle;
+	
 	@Override
 	protected void initView() {
 		setContentView(R.layout.activity_main);
+		//初始化滑动菜单
+	    drawer_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
+	  //设置滑动开关的监听器
+	  	drawer_layout.setDrawerListener(new MyDrawerListener());
+	  		
 		// 初始化横着滚动的title
 		PagerTab tabs = (PagerTab) findViewById(R.id.tabs);
 		ViewPager pager = (ViewPager) findViewById(R.id.pager);
@@ -42,6 +54,19 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
 	@Override
 	protected void initActionbar() {
 		ActionBar actionBar = getSupportActionBar();  //得到ActionBar
+		//设置actionbar的button可以被点击
+				actionBar.setHomeButtonEnabled(true);
+				actionBar.setDisplayHomeAsUpEnabled(true);
+				//初始化actionbar的滑动开关
+				/**
+				 * 第一个参数表示 activity
+				 * 第二个参数表示滑动菜单的对象
+				 * 第三个参数表示actionbar的图片
+				 * 第四个和第五个参数表示打开的文字和关闭的文字
+				 */
+				drawerToggle = new ActionBarDrawerToggle(this, drawer_layout, R.drawable.ic_drawer_am, R.string.drawer_open, R.string.drawer_close);
+				//让滑动开关和滑动菜单关联起来
+				drawerToggle.syncState();
 	}
 	
 	private class ViewPagerAdapter extends FragmentStatePagerAdapter{
@@ -90,5 +115,34 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
 	}
 	
 	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		return  drawerToggle.onOptionsItemSelected(item)|| super.onOptionsItemSelected(item);
+	}
+	
+	private class MyDrawerListener implements DrawerListener{
+
+		@Override
+		public void onDrawerClosed(View arg0) {
+			drawerToggle.onDrawerClosed(arg0);
+		}
+
+		@Override
+		public void onDrawerOpened(View arg0) {
+			drawerToggle.onDrawerOpened(arg0);			
+		}
+
+		@Override
+		public void onDrawerSlide(View arg0, float arg1) {
+			drawerToggle.onDrawerSlide(arg0, arg1);			
+		}
+
+		@Override
+		public void onDrawerStateChanged(int arg0) {
+			drawerToggle.onDrawerStateChanged(arg0);			
+		}
+
+		
+	}
 	
 }

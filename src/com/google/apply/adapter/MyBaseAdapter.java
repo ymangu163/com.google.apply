@@ -73,12 +73,11 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter{
 				 holder=getMoreHolder();   //得到另一种Holder
 			 }else{
 				 holder = getHolder();				 
-			 }
-			
-			
+				 holder.setData(mDatas.get(position));
+			 }			
 			
 		}
-		holder.setData(mDatas.get(position));
+		
 		return holder.getRootView();
 	
 	}
