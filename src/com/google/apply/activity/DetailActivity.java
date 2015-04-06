@@ -6,6 +6,8 @@ import android.widget.FrameLayout;
 
 import com.google.apply.R;
 import com.google.apply.bean.AppInfo;
+import com.google.apply.holder.DetailInfoHolder;
+import com.google.apply.holder.DetailSafeHolder;
 import com.google.apply.protocol.DetailProtocol;
 import com.google.apply.ui.widget.LoadingPager;
 import com.google.apply.ui.widget.LoadingPager.LoadResult;
@@ -21,6 +23,7 @@ public class DetailActivity extends BaseActivity {
 	protected void initView() {		
 		Intent intent = getIntent();
 		packageName = intent.getStringExtra("packageName");
+		
 		if(mContentView==null){
 		mContentView = new LoadingPager(UIUtils.getContext()) {
 			
@@ -45,10 +48,19 @@ public class DetailActivity extends BaseActivity {
 	
 	protected View createLoadedView() {
 		View view = UIUtils.inflate(R.layout.activity_detail);
-		FrameLayout detail_info = (FrameLayout) view.findViewById(R.id.detail_info);
-//		DetailInfoHolder detailInfoHolder = new DetailInfoHolder();
 		
-		return null;
+		FrameLayout detail_info = (FrameLayout) view.findViewById(R.id.detail_info);
+		DetailInfoHolder detailInfoHolder = new DetailInfoHolder();
+		detailInfoHolder.setData(appInfo);
+		detail_info.addView(detailInfoHolder.getRootView());
+		
+		//第二部分view,去中心化架构
+		FrameLayout detail_safe = (FrameLayout) view.findViewById(R.id.detail_safe);
+		DetailSafeHolder detailSafeHolder = new DetailSafeHolder();
+		detailSafeHolder.setData(appInfo);
+		detail_safe.addView(detailSafeHolder.getRootView());
+		
+		return view;
 	}
 
 	protected LoadResult load() {
